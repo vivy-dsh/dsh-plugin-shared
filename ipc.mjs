@@ -2,9 +2,9 @@ import { randomBytes, randomUUID, timingSafeEqual } from 'node:crypto'
 import { existsSync, lstatSync, mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs'
 import { isAbsolute, join } from 'node:path'
 
-const names = new Set(['memory', 'voice', 'asr', 'mempalace', 'surfcore-adapter', 'evolution'])
+const names = new Set(['memory', 'voice', 'asr', 'mempalace', 'surfcore-adapter', 'evolution', 'laputa', 'harness'])
 /** Domain error codes stay readable to the caller, but only for the component that owns the prefix. */
-const errorCodes = { memory: /^(?:MEMORY_|SUBJECT_|ACTMEM_)/, asr: /^ASR_/, mempalace: /^MEMPALACE_/, 'surfcore-adapter': /^SURFCORE_ADAPTER_/, evolution: /^EVOLUTION_/ }
+const errorCodes = { memory: /^(?:MEMORY_|SUBJECT_|ACTMEM_)/, asr: /^ASR_/, mempalace: /^MEMPALACE_/, 'surfcore-adapter': /^SURFCORE_ADAPTER_/, evolution: /^EVOLUTION_/, laputa: /^(?:LAPUTA_|PERSONA_)/, harness: /^(?:HARNESS_|SKILL_)/ }
 function validName(name) { if (!names.has(name)) throw new Error('Unknown component'); return name }
 function loopback(input) {
   let url
